@@ -5,13 +5,14 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    let playerSelection = playerSelection.toLowerCase();
-    let win = 'You won!' + playerSelection + 'beats ' + computerSelection;
-    let lose = 'You lose!' + computerSelection + 'beats ' + playerSelection;
+    playerSelection = playerSelection.toLowerCase();
+    let win = 'You won! ' + playerSelection + ' beats ' + computerSelection;
+    let lose = 'You lose! ' + computerSelection + ' beats ' + playerSelection;
     let result;
 
     if (playerSelection == computerSelection) {
-        playRound(playerSelection, getComputerSelection());
+        console.log('A tie!');
+        return playRound(playerSelection, getComputerChoice());
     }
 
     else {
@@ -30,3 +31,7 @@ function playRound(playerSelection, computerSelection) {
 
     return result;
 }
+
+const playerChoice = 'rock';
+const computerChoice = getComputerChoice();
+console.log(playRound(playerChoice, computerChoice));
