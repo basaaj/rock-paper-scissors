@@ -8,30 +8,32 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     let win = 'You won! ' + playerSelection + ' beats ' + computerSelection;
     let lose = 'You lose! ' + computerSelection + ' beats ' + playerSelection;
-    let result;
+    let playerWins;
 
     if (playerSelection == computerSelection) {
-        console.log('A tie!');
+        console.log('A tie! You both picked ' + playerSelection);
         return playRound(playerSelection, getComputerChoice());
     }
 
     else {
         if (playerSelection == 'rock') {
-            result = computerSelection == 'scissors' ? win : lose;
+            playerWins = computerSelection == 'scissors' ? true : false;
         }
 
         else if (playerSelection == 'scissors') {
-            result = computerSelection == 'paper' ? win : lose;
+            playerWins = computerSelection == 'paper' ? true : false;
         }
 
         else if (playerSelection == 'paper') {
-            result = computerSelection == 'rock' ? win : lose;
+            playerWins = computerSelection == 'rock' ? true : false;
         }
+
+        playerWins ? console.log(win) : console.log(lose);
     }
 
-    return result;
+    return playerWins;
 }
 
 const playerChoice = 'rock';
 const computerChoice = getComputerChoice();
-console.log(playRound(playerChoice, computerChoice));
+playRound(playerChoice, computerChoice);
