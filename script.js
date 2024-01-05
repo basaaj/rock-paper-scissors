@@ -39,6 +39,8 @@ function game() {
     let computerWins = 0;
 
     for (i = 0; i < 5; i++) {
+        let playerChoice = prompt("Rock paper scissors! Which one will you choose?");
+
         let currRound = playRound(playerChoice, getComputerChoice());
         currRound ? playerWins++ : computerWins++;
         console.log("Player: " + playerWins + " | Computer: " + computerWins);
@@ -51,6 +53,4 @@ function game() {
     playerWins > computerWins ? console.log("Congrats, you won!") : console.log("Sorry, you lost.");
 }
 
-
-const playerChoice = 'rock';
 game();
