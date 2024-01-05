@@ -34,6 +34,23 @@ function playRound(playerSelection, computerSelection) {
     return playerWins;
 }
 
+function game() {
+    let playerWins = 0;
+    let computerWins = 0;
+
+    for (i = 0; i < 5; i++) {
+        let currRound = playRound(playerChoice, getComputerChoice());
+        currRound ? playerWins++ : computerWins++;
+        console.log("Player: " + playerWins + " | Computer: " + computerWins);
+
+        if (playerWins == 3 || computerWins == 3) {
+            break;
+        }
+    }
+
+    playerWins > computerWins ? console.log("Congrats, you won!") : console.log("Sorry, you lost.");
+}
+
+
 const playerChoice = 'rock';
-const computerChoice = getComputerChoice();
-playRound(playerChoice, computerChoice);
+game();
