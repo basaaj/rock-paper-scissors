@@ -6,12 +6,10 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    let win = 'You won! ' + playerSelection + ' beats ' + computerSelection;
-    let lose = 'You lose! ' + computerSelection + ' beats ' + playerSelection;
     let playerWins;
 
-    if (playerSelection == computerSelection) {
-        console.log('A tie! You both picked ' + playerSelection);
+    if (playerSelection === computerSelection) {
+        displayResult('A tie! You both picked ' + playerSelection);
         return playRound(playerSelection, getComputerChoice());
     }
 
@@ -28,7 +26,8 @@ function playRound(playerSelection, computerSelection) {
             playerWins = computerSelection == 'rock' ? true : false;
         }
 
-        playerWins ? console.log(win) : console.log(lose);
+        playerWins ? displayResult('You won! ' + playerSelection + ' beats ' + computerSelection) 
+                   : displayResult('You lose! ' + computerSelection + ' beats ' + playerSelection);
     }
 
     return playerWins;
@@ -56,6 +55,7 @@ function playRound(playerSelection, computerSelection) {
 // game();
 
 const choices = document.querySelectorAll('button');
+const resultDiv = document.querySelector('div');
 
 choices.forEach(choice => {
     choice.addEventListener('click', function() {
@@ -63,3 +63,6 @@ choices.forEach(choice => {
     });
 });
 
+function displayResult(result) {
+    resultDiv.textContent = result;
+}
