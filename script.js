@@ -6,31 +6,30 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    let playerWins;
+    let result = 'lose';
 
     if (playerSelection === computerSelection) {
         displayResult('A tie! You both picked ' + playerSelection);
-        return playRound(playerSelection, getComputerChoice());
     }
 
     else {
-        if (playerSelection == 'rock') {
-            playerWins = computerSelection == 'scissors' ? true : false;
+        if (playerSelection == 'rock' && computerSelection == 'scissors') {
+            result = 'win';
         }
 
-        else if (playerSelection == 'scissors') {
-            playerWins = computerSelection == 'paper' ? true : false;
+        else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+            result = 'win';
         }
 
-        else if (playerSelection == 'paper') {
-            playerWins = computerSelection == 'rock' ? true : false;
+        else if (playerSelection == 'paper' && computerSelection == 'rock') {
+            result = 'win';
         }
 
-        playerWins ? displayResult('You won! ' + playerSelection + ' beats ' + computerSelection) 
-                   : displayResult('You lose! ' + computerSelection + ' beats ' + playerSelection);
+        result == 'win' ? displayResult('You won! ' + playerSelection + ' beats ' + computerSelection) 
+                        : displayResult('You lose! ' + computerSelection + ' beats ' + playerSelection);
     }
 
-    return playerWins;
+    return result;
 }
 
 // function game() {
@@ -56,6 +55,8 @@ function playRound(playerSelection, computerSelection) {
 
 const choices = document.querySelectorAll('button');
 const resultDiv = document.querySelector('div');
+const playerScore = 0;
+const computerScore = 0;
 
 choices.forEach(choice => {
     choice.addEventListener('click', function() {
