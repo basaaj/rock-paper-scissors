@@ -9,7 +9,8 @@ function playRound(playerSelection, computerSelection) {
     let result = 'lose';
 
     if (playerSelection === computerSelection) {
-        displayResult('A tie! You both picked ' + playerSelection);
+        displayResult('A tie! You both picked ' + playerSelection + '.');
+        result = 'tie';
     }
 
     else {
@@ -25,8 +26,8 @@ function playRound(playerSelection, computerSelection) {
             result = 'win';
         }
 
-        result == 'win' ? displayResult('You won! ' + playerSelection + ' beats ' + computerSelection) 
-                        : displayResult('You lose! ' + computerSelection + ' beats ' + playerSelection);
+        result == 'win' ? displayResult('You won! ' + playerSelection + ' beats ' + computerSelection + '.') 
+                        : displayResult('You lose! ' + computerSelection + ' beats ' + playerSelection + '.');
     }
 
     return result;
@@ -54,16 +55,52 @@ function playRound(playerSelection, computerSelection) {
 // game();
 
 const choices = document.querySelectorAll('button');
-const resultDiv = document.querySelector('div');
-const playerScore = 0;
-const computerScore = 0;
+const resultDiv = document.querySelector('#result');
+const scoreboard = document.querySelector('#scoreboard');
+let playerScore = 0;
+let computerScore = 0;
+
+displayScore();
 
 choices.forEach(choice => {
     choice.addEventListener('click', function() {
-        playRound(choice.textContent, getComputerChoice());
+        // If someone previously won the game, clear scores
+        if (playerScore == 5 || computerScore == 5) {
+            playerScore = 0;
+            computerScore = 0;
+        }
+
+        // Determine winner
+        let result = playRound(choice.textContent, getComputerChoice());
+        let description = '';
+
+        // Increment score of apporpriate player
+        if (result === 'win') {
+            playerScore++;
+
+            if (playerScore == 5) {
+                description += ' Congrats you won!';
+            }
+        }
+
+        else if (result === 'lose') {
+            computerScore++;
+
+            if (computerScore == 5) {
+                description += ' Sorry, you lost :(';
+            }
+        }
+
+        // Display the results and score
+        displayResult(resultDiv.textContent + description);
+        displayScore();
     });
 });
 
 function displayResult(result) {
     resultDiv.textContent = result;
+}
+
+function displayScore() {
+    scoreboard.textContent = `Player: ${playerScore}    Computer: ${computerScore}`;
 }
