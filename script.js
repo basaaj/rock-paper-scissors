@@ -26,8 +26,8 @@ function playRound(playerSelection, computerSelection) {
             result = 'win';
         }
 
-        result == 'win' ? displayResult('You won! ' + playerSelection + ' beats ' + computerSelection + '.') 
-                        : displayResult('You lose! ' + computerSelection + ' beats ' + playerSelection + '.');
+        result == 'win' ? displayResult('You won! You beat the computer (' + playerSelection + ' beats ' + computerSelection + ').') 
+                        : displayResult('You lose! The computer beat you (' + computerSelection + ' beats ' + playerSelection + ').');
     }
 
     return result;
@@ -79,7 +79,7 @@ choices.forEach(choice => {
             playerScore++;
 
             if (playerScore == 5) {
-                description += ' Congrats you won!';
+                description += ' Congrats you beat the computer!';
             }
         }
 
