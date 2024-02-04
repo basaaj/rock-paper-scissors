@@ -33,27 +33,6 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
-// function game() {
-//     let playerWins = 0;
-//     let computerWins = 0;
-
-//     for (i = 0; i < 5; i++) {
-//         let playerChoice = prompt("Rock paper scissors! Which one will you choose?");
-
-//         let currRound = playRound(playerChoice, getComputerChoice());
-//         currRound ? playerWins++ : computerWins++;
-//         console.log("Player: " + playerWins + " | Computer: " + computerWins);
-
-//         if (playerWins == 3 || computerWins == 3) {
-//             break;
-//         }
-//     }
-
-//     playerWins > computerWins ? console.log("Congrats, you won!") : console.log("Sorry, you lost.");
-// }
-
-// game();
-
 const choices = document.querySelectorAll('button');
 const resultDiv = document.querySelector('#result');
 const scoreboard = document.querySelector('#scoreboard');
